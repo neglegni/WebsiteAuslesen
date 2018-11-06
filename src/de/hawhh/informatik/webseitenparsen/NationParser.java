@@ -27,10 +27,11 @@ public class NationParser {
     private static final Pattern TABELLE_END = Pattern.compile(".*?</table>");
     private static final Pattern TABELLE_EINTRAG = Pattern.compile("<tr>.*?</tr>",Pattern.MULTILINE | Pattern.DOTALL);
     private static final Pattern NATION_ZEILE = Pattern.compile("<td.*?>.*?</td>", Pattern.MULTILINE | Pattern.DOTALL);
+    //TODO regex für FlagRef anpassen (<img....)
     private static final Pattern NATION_SPALTE = Pattern.compile("<.*?>", Pattern.MULTILINE | Pattern.DOTALL);
     private static final String ZAHL = "\\d";
     /**
-     * TODO IDEE: Lesen des <tr></tr>-Bereichs --> extrahieren , hinterher weiter Zerstückeln mithilfe class Nation (statt Map(Beispiel))
+     *  IDEE: Lesen des <tr></tr>-Bereichs --> extrahieren , hinterher weiter Zerstückeln mithilfe class Nation (statt Map(Beispiel))
      <tr>
      <td><i><a href="Abchasien.html" title="Abchasien">Abchasien</a></i><sup id="cite_ref-Anerkennung_A_9-0" class="reference"><a href="#cite_note-Anerkennung_A-9">&#91;9&#93;</a></sup>
      </td>
