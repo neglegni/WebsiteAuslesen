@@ -109,6 +109,7 @@ public class NationParser {
                 while (matcherNation.find()){
                     String str;
                     System.out.println(i + ". ");
+                    String g1 = matcherNation.group();
                     switch (i) {
                         case 1: str = matcherNation.group();
                             System.out.println(str);
@@ -118,7 +119,7 @@ public class NationParser {
                         case 3: str = matcherNation.group();
                             System.out.println(str);
                             capital = replaceTags(str);
-                        System.out.println(name);
+                        System.out.println(capital);
                         break;
                         case 4: str = matcherNation.group();
                             System.out.println(str);
@@ -156,7 +157,7 @@ public class NationParser {
 
     public String replaceTags(String spalte) {
         String cleaned = spalte.replaceAll(NATION_SPALTE.toString(), "")
-                .replaceAll("\\n", "").replaceAll("\\.","")
+                .replaceAll("\\n|\\r", "").replaceAll("\\.","")
                 .replaceAll("&.*","");
         return cleaned;
     }

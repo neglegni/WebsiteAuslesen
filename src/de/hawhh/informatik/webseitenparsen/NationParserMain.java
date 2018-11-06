@@ -13,7 +13,7 @@ public class NationParserMain {
 
     private static final String RESOURCE_PREFIX = "file:///";
     // RESOURCE_DIR um out/production/A2-WS1819/ verringert
-    private static final String RESOURCE_DIR = "de.wikipedia.org/wiki/";
+    private static final String RESOURCE_DIR = "out/production/A2-WS1819/de.wikipedia.org/wiki/";
     private static final String RESOURCE_NAME = "Liste_der_Staaten_der_Erde.html";
     public static void main(String[] args) throws IOException {
 
@@ -21,7 +21,7 @@ public class NationParserMain {
          * Die Referenz auf die Datei wird als String übergeben: file:///<absoluter Pfad zur Datei>
          * Path nationLocal = Paths.get( RESOURCE_DIR +RESOURCE_NAME); Pfad zur der Datei (Bezug das aktuelle Projekt)
          * nationLocal.toAbsolutePath() expandiert zum absoluten Pfad (als String)
-         * "file:///“ beschreibt das Protokoll für das Öffnen Ressource    */
+         * "file:///“ beschreibt das Protokoll für das Öffnen Ressource  */
 
         Path nationLocal = Paths.get( RESOURCE_DIR +RESOURCE_NAME);
         NationParser parser = new NationParser(RESOURCE_PREFIX +
