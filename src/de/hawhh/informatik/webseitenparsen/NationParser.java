@@ -23,7 +23,7 @@ public class NationParser {
     private static final Pattern TABELLE_BEGIN = Pattern.compile("<h2><span class=\"mw-headline\" id=\"Tabelle\">Tabelle</span>.*?</h2>");
     //Regulärer Ausdruck für das Ende der Tabelle.
     private static final Pattern TABELLE_END = Pattern.compile(".*?</table>");
-    private static final Pattern TABELLE_EINTRAG = Pattern.compile("<tr>.*?</tr>",Pattern.MULTILINE | Pattern.DOTALL);
+    private static final Pattern TABELLE_EINTRAG = Pattern.compile("<tr.*?>.*?</tr>",Pattern.MULTILINE | Pattern.DOTALL);
     private static final Pattern NATION_ZEILE = Pattern.compile("<td.*?>.*?</td>", Pattern.MULTILINE | Pattern.DOTALL);
     private static final Pattern NATION_SPALTE = Pattern.compile("<.*?>", Pattern.MULTILINE | Pattern.DOTALL);
     private static final Pattern IMG_FILTER = Pattern.compile("\\.\\./upload.*?\\.png",Pattern.MULTILINE | Pattern.DOTALL);
@@ -90,10 +90,12 @@ public class NationParser {
                     }
                     i++;
                 }
-                long numInhititatsLong= Long.valueOf(numInhibitats.replaceAll("[^\\d]",""));
-                long areaLong = Long.valueOf(area.replaceAll("[^\\d]",""));
-                Nation nation = new Nation(name, capital, areaLong, numInhititatsLong, flagRef);
-                nations.add(nation);
+                long numInhititatsLong= Long.valueOf(toDigitString(numInhibitats));
+                long areaLong = Long.valueOf(toDigitString(area));
+                if (!name.isEmpty()){
+                    Nation nation = new Nation(name, capital, areaLong, numInhititatsLong, flagRef);
+                    nations.add(nation);
+                }
             }
         }
 
@@ -108,7 +110,7 @@ public class NationParser {
             String cleaned = matcherImg.group().replaceAll("\\n|\\r", "").replaceAll("&.*","");
             return cleaned;
         }
-        return "none found";
+        return "";
     }
 
     public String replaceTags(String spalte) {
@@ -118,7 +120,11 @@ public class NationParser {
         return cleaned;
     }
 
-    public String toDigitString(String str) {
-        return str.replaceAll("[^\\d]","");
+    public String toDigitString(String numInhibitats) {
+        String clean = numInhibitats.replaceAll("[^\\d]","");
+        if (clean.isEmpty()){
+            return "0";
+        }
+        return numInhibitats.replaceAll("[^\\d]","");
     }
 }
