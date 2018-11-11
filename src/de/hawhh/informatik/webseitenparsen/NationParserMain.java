@@ -13,7 +13,7 @@ public class NationParserMain {
 
     private static final String RESOURCE_PREFIX = "file:///";
     // RESOURCE_DIR um out/production/A2-WS1819/ verringert
-    private static final String RESOURCE_DIR = "out/production/A2-WS1819/de.wikipedia.org/wiki/";
+    private static final String RESOURCE_DIR = "de.wikipedia.org/wiki/";
     private static final String RESOURCE_NAME = "Liste_der_Staaten_der_Erde.html";
     public static void main(String[] args) throws IOException {
 
